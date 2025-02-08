@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerBullet : MonoBehaviour
 {
     public int speed = 5;
+    public int speed2 = 0;
     public int damage = 1;
     public int pierce = 1;
     private Rigidbody2D rb;
@@ -10,6 +11,7 @@ public class PlayerBullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.linearVelocityY = speed;
+        rb.linearVelocityX = speed2;
     }
 
     void Update()

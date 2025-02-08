@@ -38,7 +38,6 @@ public class WaveManager : MonoBehaviour
             int random = Random.Range(0, Spawner.Length);
             int random2 = Random.Range(minSpawn, maxSpawn);
             Spawner[random].GetComponent<SpawnCount>().Count = random2;
-            Debug.Log(random2);
             //Spawner[random].GetComponent<SpawnCount>().SetCount(random2);
             Instantiate(Spawner[random]);
             if ((Boss == null || MiniBoss == null )&& wave != 0) 

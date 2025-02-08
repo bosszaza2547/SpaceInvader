@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        if(health > maxhealth)
+            health = maxhealth;
         manager.SetHealth(health);
     }
 }

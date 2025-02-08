@@ -1,6 +1,6 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class GameManagerScript : MonoBehaviour
 {
@@ -8,16 +8,28 @@ public class GameManagerScript : MonoBehaviour
     private int Wave;
     private int Health,MaxHealth;
     public GameObject UI;
+    public GameObject Pause;
+    public GameObject[] SkillUI;
 
-    
+
     void Start()
     {
-        
+        Time.timeScale = 1;
+        for (int i = 0; i < SkillUI.Length; i++)
+        {
+            SkillUI[i].GetComponent<Image>().sprite = Globalvariable.SkillSprite[Globalvariable.SelectedSkills[i]];
+        }
     }
 
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(!Pause.activeSelf)
+                Pause.GetComponent<PauseMenu>().Pause();
+            else
+                Pause.GetComponent<PauseMenu>().Unpause();
+        }
     }
     public void UpdateScore()
     {
@@ -56,4 +68,12 @@ public class GameManagerScript : MonoBehaviour
         MaxHealth = value;
         UpdateHealth();
     }
+    public void SetSkillCooldown(bool value, int i)
+    {
+        if(value == true) 
+            SkillUI[i].GetComponent<Image>().color = new Color32(255,255,255,255);
+        else
+            SkillUI[i].GetComponent<Image>().color = new Color32(100, 100, 100, 255);
+    }
+    
 }
